@@ -1,0 +1,225 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// “ú–{Œê resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "1 TYPELIB ""QRCStamp.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,1,0
+ PRODUCTVERSION 0,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041103a4"
+        BEGIN
+            VALUE "Comments", "QRCode Stamp (libqrencode)"
+            VALUE "CompanyName", "HIRAOKA HYPERS TOOLS, Inc."
+            VALUE "FileDescription", "QRCode Stamp (libqrencode)"
+            VALUE "FileVersion", "0, 0, 1, 0"
+            VALUE "InternalName", "QRCStamp.ocx"
+            VALUE "OriginalFilename", "QRCStamp.ocx"
+            VALUE "ProductName", "QRCStamp"
+            VALUE "ProductVersion", "0, 0, 1, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 932
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ABOUTDLL            ICON                    "QRCStamp.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_QRCSTAMP            BITMAP                  "QRCStampCtrl.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX_QRCSTAMP DIALOGEX 34, 22, 259, 67
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About QRCode Stamp (libqrencode)"
+FONT 9, "‚l‚r ‚oƒSƒVƒbƒN", 0, 0, 0x0
+BEGIN
+    ICON            IDI_ABOUTDLL,IDC_STATIC,10,10,20,20
+    LTEXT           "QRCode Stamp (libqrencode), Version x.x.x",IDC_STATIC_VER,40,10,170,8
+    LTEXT           "libqrencode Copyright (C) 2006-2010 Kentaro Fukuchi",IDC_STATIC,40,25,212,8
+    DEFPUSHBUTTON   "OK",IDOK,220,7,32,16,WS_GROUP
+    LTEXT           "QRCode Stamp Copyright (C) 2011 HIRAOKA HYPERS TOOLS, Inc.",IDC_STATIC,40,39,212,8
+END
+
+IDD_PROPPAGE_QRCSTAMP DIALOGEX 0, 0, 173, 145
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "‚l‚r ‚oƒSƒVƒbƒN", 0, 0, 0x0
+BEGIN
+    LTEXT           "&Value:",IDC_STATIC,7,7,19,8
+    EDITTEXT        IDC_EDIT_VALUE,7,17,151,52,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
+    LTEXT           "PelsPer&Meter:",IDC_STATIC,7,75,41,8
+    EDITTEXT        IDC_EDIT_PPM,7,85,50,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    LTEXT           "&SizeMode:",IDC_STATIC,62,75,30,8
+    COMBOBOX        IDC_COMBO_SIZEMODE,62,85,95,106,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&ErrorCorrectLevel:",IDC_STATIC,62,105,54,8
+    COMBOBOX        IDC_COMBO_ECL,62,115,95,109,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX_QRCSTAMP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 60
+    END
+
+    IDD_PROPPAGE_QRCSTAMP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 166
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PROPPAGE_QRCSTAMP DLGINIT
+BEGIN
+    IDC_COMBO_SIZEMODE, 0x403, 19, 0
+0x2030, 0x202d, 0x6953, 0x657a, 0x6f4d, 0x6564, 0x6543, 0x746e, 0x7265, 
+"\000" 
+    IDC_COMBO_SIZEMODE, 0x403, 20, 0
+0x2031, 0x202d, 0x6953, 0x657a, 0x6f4d, 0x6564, 0x7453, 0x6572, 0x6374, 
+0x0068, 
+    IDC_COMBO_SIZEMODE, 0x403, 17, 0
+0x2032, 0x202d, 0x6953, 0x657a, 0x6f4d, 0x6564, 0x6f5a, 0x6d6f, "\000" 
+    IDC_COMBO_ECL, 0x403, 23, 0
+0x2030, 0x202d, 0x7245, 0x6f72, 0x4372, 0x726f, 0x6572, 0x7463, 0x654c, 
+0x6576, 0x4d6c, "\000" 
+    IDC_COMBO_ECL, 0x403, 23, 0
+0x2031, 0x202d, 0x7245, 0x6f72, 0x4372, 0x726f, 0x6572, 0x7463, 0x654c, 
+0x6576, 0x4c6c, "\000" 
+    IDC_COMBO_ECL, 0x403, 23, 0
+0x2032, 0x202d, 0x7245, 0x6f72, 0x4372, 0x726f, 0x6572, 0x7463, 0x654c, 
+0x6576, 0x486c, "\000" 
+    IDC_COMBO_ECL, 0x403, 23, 0
+0x2033, 0x202d, 0x7245, 0x6f72, 0x4372, 0x726f, 0x6572, 0x7463, 0x654c, 
+0x6576, 0x516c, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_QRCSTAMP            "QRCode Stamp (libqrencode)"
+    IDS_QRCSTAMP_PPG        "QRCStamp Property Page"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QRCSTAMP_PPG_CAPTION "‘S”Ê"
+END
+
+#endif    // “ú–{Œê resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "QRCStamp.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
