@@ -13,7 +13,7 @@ CQRCStampApp theApp;
 const GUID CDECL BASED_CODE _tlid =
 		{ 0x60028474, 0x1671, 0x4F2D, { 0x94, 0xCF, 0x86, 0x63, 0x87, 0x96, 0x99, 0x7F } };
 const WORD _wVerMajor = 1;
-const WORD _wVerMinor = 0;
+const WORD _wVerMinor = 1;
 
 
 

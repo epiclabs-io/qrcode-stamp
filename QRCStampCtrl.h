@@ -61,6 +61,9 @@ protected:
 // ディスパッチ と イベント ID
 public:
 	enum {
+		eventidPixScaleChange = 1007L,
+		dispidPixScale = 1007,
+
 		eventidEncodeModeChange = 1006L,
 		dispidEncodeMode = 1006,
 
@@ -126,6 +129,15 @@ protected:
 	void EncodeModeChange(void)
 	{
 		FireEvent(eventidEncodeModeChange, EVENT_PARAM(VTS_NONE));
+	}
+
+	LONG GetPixScale(void);
+	void SetPixScale(LONG newVal);
+	LONG m_PixScale;
+
+	void PixScaleChange(void)
+	{
+		FireEvent(eventidPixScaleChange, EVENT_PARAM(VTS_NONE));
 	}
 
 public:
