@@ -53,8 +53,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,1,0
- PRODUCTVERSION 0,0,1,0
+ FILEVERSION 0,0,2,0
+ PRODUCTVERSION 0,0,2,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -72,11 +72,11 @@ BEGIN
             VALUE "Comments", "QRCode Stamp (libqrencode)"
             VALUE "CompanyName", "HIRAOKA HYPERS TOOLS, Inc."
             VALUE "FileDescription", "QRCode Stamp (libqrencode)"
-            VALUE "FileVersion", "0, 0, 1, 0"
+            VALUE "FileVersion", "0, 0, 2, 0"
             VALUE "InternalName", "QRCStamp.ocx"
             VALUE "OriginalFilename", "QRCStamp.ocx"
             VALUE "ProductName", "QRCStamp"
-            VALUE "ProductVersion", "0, 0, 1, 0"
+            VALUE "ProductVersion", "0, 0, 2, 0"
         END
     END
     BLOCK "VarFileInfo"

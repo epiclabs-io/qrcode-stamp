@@ -37,6 +37,7 @@ BEGIN_DISPATCH_MAP(CQRCStampCtrl, COleControl)
 	DISP_PROPERTY_EX_ID(CQRCStampCtrl, "SizeMode", dispidSizeMode, GetSizeMode, SetSizeMode, VT_I4)
 	DISP_PROPERTY_EX_ID(CQRCStampCtrl, "ErrorCorrectLevel", dispidErrorCorrectLevel, GetErrorCorrectLevel, SetErrorCorrectLevel, VT_I4)
 	DISP_PROPERTY_EX_ID(CQRCStampCtrl, "EncodeMode", dispidEncodeMode, GetEncodeMode, SetEncodeMode, VT_I4)
+	DISP_PROPERTY_EX_ID(CQRCStampCtrl, "PixScale", dispidPixScale, GetPixScale, SetPixScale, VT_I4)
 
 	DISP_STOCKPROP_BACKCOLOR()
 	DISP_STOCKPROP_FORECOLOR()
@@ -54,6 +55,7 @@ BEGIN_EVENT_MAP(CQRCStampCtrl, COleControl)
 	EVENT_CUSTOM_ID("SizeModeChange", eventidSizeModeChange, SizeModeChange, VTS_NONE)
 	EVENT_CUSTOM_ID("ErrorCorrectLevelChange", eventidErrorCorrectLevelChange, ErrorCorrectLevelChange, VTS_NONE)
 	EVENT_CUSTOM_ID("EncodeModeChange", eventidEncodeModeChange, EncodeModeChange, VTS_NONE)
+	EVENT_CUSTOM_ID("PixScaleChange", eventidPixScaleChange, PixScaleChange, VTS_NONE)
 END_EVENT_MAP()
 
 
@@ -269,6 +271,14 @@ void CQRCStampCtrl::DoPropExchange(CPropExchange* pPX)
 	PX_Long(pPX, _T("SizeMode"), m_sizeMode, SizeModeCenter);
 	PX_String(pPX, _T("Value"), m_strValue);
 
+	if (pPX->GetVersion() >= MAKELONG(1, 1)) {
+		PX_Long(pPX, _T("PixScale"), m_PixScale, 1);
+	}
+	else {
+		if (pPX->IsLoading())
+			m_PixScale = 1;
+	}
+
 	if (pPX->IsLoading()) {
 		UpdateBarcode();
 	}
@@ -441,7 +451,7 @@ void CQRCStampCtrl::UpdateBarcode() {
 		RECT rc = {0, 0, cx*f, cy*f};
 
 		CMetaFileDC mf;
-		if (!mf.CreateEnhanced(NULL, NULL, &rc, _T("QRCode")))
+		if (!mf.CreateEnhanced(NULL, NULL, &rc, _T("QRCStamp\0QRCode\0")))
 			AfxThrowResourceException();
 
 		mf.SetMapMode(MM_HIMETRIC);
@@ -479,19 +489,29 @@ void CQRCStampCtrl::UpdateBarcode() {
 	else {
 		int cx = pCode->width;
 		int cy = pCode->width;
-		int stride = (cx +3) & (~3);
+		int vcx = cx * m_PixScale;
+		int vcy = cy * m_PixScale;
+		int stride = (vcx +3) & (~3);
 
 		CByteArray bits;
-		bits.SetSize(stride * cy);
+		bits.SetSize(stride * vcy);
 
-		for (int y=0; y<cy; y++)
-			memcpy(bits.GetData() + (stride * (cy -y -1)), &pCode->data[cx * y], cx);
+		for (int y=0; y<cy; y++) {
+			for (int x=0; x<cx; x++) {
+				BYTE b = pCode->data[cx * y + x];
+				for (int vy=0; vy<m_PixScale; vy++) {
+					for (int vx=0; vx<m_PixScale; vx++) {
+						bits.SetAt(stride * (vcy - (y * m_PixScale + vy) - 1) + (x * m_PixScale + vx), b);
+					}
+				}
+			}
+		}
 
 		char cBI[sizeof(BITMAPINFOHEADER) + sizeof(RGBQUAD)*256];
 		PBITMAPINFO pBI = reinterpret_cast<PBITMAPINFO>(cBI);
 		pBI->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-		pBI->bmiHeader.biWidth = cx;
-		pBI->bmiHeader.biHeight = cx;
+		pBI->bmiHeader.biWidth = vcx;
+		pBI->bmiHeader.biHeight = vcx;
 		pBI->bmiHeader.biPlanes = 1;
 		pBI->bmiHeader.biBitCount = 8;
 		pBI->bmiHeader.biCompression = BI_RGB;
@@ -508,7 +528,7 @@ void CQRCStampCtrl::UpdateBarcode() {
 		void *pvBits = NULL;
 		HBITMAP hbm = CreateDIBSection(NULL, pBI, DIB_RGB_COLORS, &pvBits, NULL, 0);
 		if (hbm != NULL) {
-			memcpy(pvBits, bits.GetData(), stride * cy);
+			memcpy(pvBits, bits.GetData(), stride * vcy);
 			PICTDESC pd;
 			pd.cbSizeofstruct = sizeof(pd);
 			pd.picType = PICTYPE_BITMAP;
@@ -669,4 +689,25 @@ void CQRCStampCtrl::OnBackColorChanged() {
 void CQRCStampCtrl::OnForeColorChanged() {
 	UpdateBarcode();
 	InvalidateControl();
+}
+
+LONG CQRCStampCtrl::GetPixScale(void)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+	return m_PixScale;
+}
+
+void CQRCStampCtrl::SetPixScale(LONG newVal)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+	if (newVal < 1 || newVal > 100)
+		AfxThrowInvalidArgException();
+
+	m_PixScale = newVal;
+
+	UpdateBarcode();
+
+	SetModifiedFlag();
 }

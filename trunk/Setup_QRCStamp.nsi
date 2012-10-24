@@ -9,8 +9,8 @@
 
 !define APP "QRCStamp"
 !define COM "HIRAOKA HYPERS TOOLS, Inc."
-!define VER "0.0.1"
-!define APV "0_0_1"
+!define VER "0.0.2"
+!define APV "0_0_2"
 
 !define TTL "QRCStamp ${VER}"
 
@@ -29,6 +29,10 @@ InstallDirRegKey HKLM "Software\${COM}\${APP}" "Install_Dir"
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel admin
+
+!include "FileFunc.nsh"
+
+!insertmacro Locate
 
 ;--------------------------------
 
@@ -70,6 +74,15 @@ Section "QRCStamp (x86; 32)"
   WriteUninstaller "uninstall.exe"
   
 SectionEnd
+
+Section "Clear QRCStampLib.exd files"
+  ${Locate} "$TEMP" "/L=F /M=QRCStampLib.exd" "DeleteIt"
+SectionEnd
+
+Function DeleteIt
+  Delete "$R9"
+  Push $0
+FunctionEnd
 
 ; Optional section (can be disabled by the user)
 Section /o "Start Menu Shortcuts"
