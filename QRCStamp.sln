@@ -1,12 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QRCStamp", "QRCStamp.vcproj", "{B84D1F93-8B76-46FC-B6DB-14D3B5FF4A28}"
-	ProjectSection(ProjectDependencies) = postProject
-		{9A90BF5C-84B0-41F6-B83C-C20EADC1F46C} = {9A90BF5C-84B0-41F6-B83C-C20EADC1F46C}
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QRCStamp", "QRCStamp.vcxproj", "{B84D1F93-8B76-46FC-B6DB-14D3B5FF4A28}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qrcodelib", "qrencode-vc8-3.1.1\vc8\qrcodelib\qrcodelib.vcproj", "{9A90BF5C-84B0-41F6-B83C-C20EADC1F46C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qrcodelib", "qrencode-vc8-3.1.1\vc8\qrcodelib\qrcodelib.vcxproj", "{9A90BF5C-84B0-41F6-B83C-C20EADC1F46C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
